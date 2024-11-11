@@ -1,0 +1,44 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>CV List</h1>
+
+    <% if (cvs && cvs.length > 0) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>CV</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% cvs.forEach(cv => { %>
+                    <tr>
+                        <td><%= cv.name %></td>
+                        <td><%= cv.email %></td>
+                        <td><%= cv.CV %></td>
+                       
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p>No CVs found.</p>
+    <% } %>
+
+    <form action="/cv/add" method="get">
+        <input type="submit" value="Add New CV">
+    </form> 
+</body>
+</html>
