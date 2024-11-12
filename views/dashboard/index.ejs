@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Dashboard</h1>
+
+    <table>
+      <tr>
+        <th>Serial No.</th>
+        <th>Filename</th>
+        <th>Date Added</th>
+        <th>Date Modified</th>
+        <th>Actions</th>
+      </tr>
+      <% cvs.forEach((cv, i) => { %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><%= cv.fileName %></td>
+        <td><%= (cv.dateAdded ? dayjs( cv.dateAdded ).format('Do MMMM, YYYY HH:mm:ss') : 'N/A') %></td>
+        <td><%= (cv.dateModified ? dayjs( cv.dateModified ).format('Do MMMM, YYYY HH:mm:ss') : 'N/A') %></td>
+
+        <td>
+          <button href="">View</button>
+          <button href="">Edit</button>
+          <button href="">Delete</button>
+          <% const link = dashboardService.getCVUrl(cv.fileName) %>
+          <button href="<%= link %>" download="<%= cv.fileName %>">Download</button>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>
