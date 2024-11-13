@@ -10,7 +10,22 @@ const dayjs = require("dayjs");
 const advancedFormat = require("dayjs/plugin/advancedFormat");
 
 dayjs.extend(advancedFormat);
+ 
 
+// Read all CVs
+ router.get('/', (req, res) => {
+  const cvs = dashboardService.readDashboard();
+  res.render("dashboard", { cvs: cvs, dayjs: dayjs, dashboardService: dashboardService })
+});
+
+// Submit a new CV
+router.post('/add', (req, res) => {
+  const newCV = req.body;
+  const createdCV = dashboardService.addCurriculumVita(newCV);
+  res.redirect('/dashboard/' + createdCV.id)
+});
+
+//view single item in table 
 router.get("/:userId", (req, res) => {
   const userId = parseInt(req.params.userId);
 

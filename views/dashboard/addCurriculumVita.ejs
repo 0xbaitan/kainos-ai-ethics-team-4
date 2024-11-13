@@ -1,0 +1,23 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New CV</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Add New CV</h1>
+
+    <form action="/dashboard/add" method="post">
+        <label for="CV">Please Attach CV:</label><br>
+        <input type="file" id="CV" name="CV"><br>
+
+        <input type="submit" value="Submit">
+    </form> 
+    <form action="/dashboard/" method="post">
+        <input type="submit" value="Return">
+    </form> 
+</body>
+</html>
