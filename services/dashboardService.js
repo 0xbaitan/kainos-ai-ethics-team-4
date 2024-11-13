@@ -27,16 +27,17 @@ class DashboardService {
       console.error("Error writing dashboard:", err);
     }
   }
-
-  addCurriculumVita(cvFileBuffer, user) {
+  
+  addCurriculumVita(user) {
     const dashboard = this.readDashboard();
-    const cvFileName = `${user.id}-${user.name.replace(/\s/g, "-")}.pdf`;
-    fs.writeFileSync(`${this.curriculumVitaeStoreFolder}/${cvFileName}`, cvFileBuffer);
+    
+    const cvFileName = `${user.CV.replace(/\s/g, "-")}.pdf`;
+    //fs.writeFileSync(`${this.curriculumVitaeStoreFolder}/${cvFileName}`, cvFileBuffer);
     const updatedDashboard = [
       ...dashboard,
       {
         id: dashboard.length ? dashboard[dashboard.length - 1].id + 1 : 1,
-        userId: user.id,
+        userId: user,
         cvFileName: cvFileName,
         dateAdded: dayjs().format("YYYY-MM-DD HH:mm:ss"),
         dateModified: null,
