@@ -11,15 +11,16 @@
 
 <body>
     <h1>Add New CV</h1>
-    <form action="/dashboard/add" method="post" enctype="multipart/form-data">
-        <label for="CV">Please Attach CV:</label><br>
-        <input type="file" id="CV" name="CV"><br>
-        <input type="submit" value="Submit" onclick="uploadFile()">
+    <form action="/dashboard/add" method="post", enctype="multipart/form-data">
+        <label for="CV">Please Attach CV:</label>
+        <input type="file" id="file" name="CV"><br>
+        <input type="submit" value="Submit">
     </form>
 
     <form action="/dashboard/" method="get">
         <input type="submit" value="Return">
     </form>
 </body>
+
 
 </html>

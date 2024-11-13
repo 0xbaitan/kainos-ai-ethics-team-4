@@ -1,7 +1,9 @@
 var express = require("express");
 var router = express.Router();
-var formidable = require("formidable");
+var multer = require("multer");
+var upload = multer({dest: "db/curriculum-vitae/"})
 var fs = require('fs');
+
 
 const DashboardService = require("../services/dashboardService");
 const dashboardService = new DashboardService();
@@ -24,18 +26,10 @@ router.get('/add', (req, res) => {
   res.render('dashboard/addCurriculumVita');
 });
 
-// Submit a new CV
-router.post('/add', (req, res) => {
-  const form = formidable.formidable({});
-  form.parse(req, (err, fields, files) => {
-    var oldpath = files.filetoupload.filepath;
-    var newpath = '/db/curriculum-vitae/' + files.filetoupload.originalFilename;
-    fs.rename(oldpath, newpath, function (err) {
-      if (err) throw err;
-    });
-  });
-  res.redirect('/dashboard/' + createdCV.id)
+router.post('/add', upload.single("CV"), function(req, res) {
+
 });
+
 
 //view single item in table 
 router.get("/:userId", (req, res) => {
