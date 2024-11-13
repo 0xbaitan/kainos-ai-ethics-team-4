@@ -19,8 +19,8 @@
       </tr>
       <% cvs.forEach((cv, i) => { %>
       <tr>
-        <td><%= i + 1 %></td>
-        <td><%= cv.fileName %></td>
+        <td><%= cv.id %></td>
+        <td><%= cv.cvFileName %></td>
         <td><%= (cv.dateAdded ? dayjs( cv.dateAdded ).format('Do MMMM, YYYY HH:mm:ss') : 'N/A') %></td>
         <td><%= (cv.dateModified ? dayjs( cv.dateModified ).format('Do MMMM, YYYY HH:mm:ss') : 'N/A') %></td>
 

@@ -36,7 +36,11 @@ router.get('/add', (req, res) => {
 });
 
 router.post('/add', upload.single("file"), function(req, res) {
-  res.redirect("/dashboard/");
+  const file = req.file;
+  console.log(file);
+  const newCV = file.filename;
+  const addedCV = dashboardService.addCurriculumVita(newCV);
+  res.redirect("/dashboard/" + addedCV);
 });
 
 
@@ -46,11 +50,6 @@ router.get("/:userId", (req, res) => {
 
   if (isNaN(userId)) {
     return res.render("error", { message: "Invalid user ID" });
-  }
-
-  const doesUserExist = userService.getUserById(userId);
-  if (!doesUserExist) {
-    return res.render("error", { message: "User not found" });
   }
 
   let cvs = dashboardService.getCurriculumVitaeByUserId(userId);

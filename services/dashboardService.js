@@ -28,23 +28,19 @@ class DashboardService {
     }
   }
   
-  addCurriculumVita(user) {
+  addCurriculumVita(cvFileName) {
     const dashboard = this.readDashboard();
-    
-    const cvFileName = `${user.CV.replace(/\s/g, "-")}.pdf`;
-    //fs.writeFileSync(`${this.curriculumVitaeStoreFolder}/${cvFileName}`, cvFileBuffer);
     const updatedDashboard = [
       ...dashboard,
       {
         id: dashboard.length ? dashboard[dashboard.length - 1].id + 1 : 1,
-        userId: user,
         cvFileName: cvFileName,
         dateAdded: dayjs().format("YYYY-MM-DD HH:mm:ss"),
         dateModified: null,
       },
     ];
     this.writeDashboard(updatedDashboard);
-    return updatedDashboard[updatedDashboard.length - 1];
+    return dashboard.length;
   }
 
   getCurriculumVitaeByUserId(userId) {
@@ -52,12 +48,7 @@ class DashboardService {
     if (!dashboard || dashboard.length === 0) {
       return [];
     }
-    return dashboard.find((cv) => cv.userId === userId);
-  }
-
-  getCurriculumVitaById(id) {
-    const dashboard = this.readDashboard();
-    return dashboard.find((cv) => cv.id === id);
+    return dashboard.find((cv) => cv.id === userId);
   }
 
   updateCurriculumVita(id, cvFileBuffer) {
