@@ -26,8 +26,8 @@ router.get('/add', (req, res) => {
   res.render('dashboard/addCurriculumVita');
 });
 
-router.post('/add', upload.single("CV"), function(req, res) {
-
+router.post('/add', upload.single("file"), function(req, res) {
+  res.redirect("/dashboard/");
 });
 
 
