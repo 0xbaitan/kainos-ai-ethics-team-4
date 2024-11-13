@@ -40,7 +40,7 @@ class DashboardService {
       },
     ];
     this.writeDashboard(updatedDashboard);
-    return dashboard.length;
+    return updatedDashboard.length;
   }
 
   getCurriculumVitaeByUserId(userId) {
