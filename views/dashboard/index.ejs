@@ -25,7 +25,7 @@
         <td><%= (cv.dateModified ? dayjs( cv.dateModified ).format('Do MMMM, YYYY HH:mm:ss') : 'N/A') %></td>
 
         <td>
-          <button href="">View</button>
+          <button onclick="window.location.href='/dashboard/<%= cv.id %>';">View</button>
           <button href="">Edit</button>
           <button href="">Delete</button>
           <% const link = dashboardService.getCVUrl(cv.fileName) %>
